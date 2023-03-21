@@ -14,13 +14,13 @@ public class ExampleTests {
     public void firstTest() {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
-        //driver.get("http://the-internet.herokuapp.com/");
+        driver.get("http://the-internet.herokuapp.com/");
         //driver.manage().window().maximize();
         //WebElement button = driver.findElement(By.xpath("//ul/li/a"));
         //button.click();
         //WebElement text = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
 
-        driver.navigate().to("http://the-internet.herokuapp.com/");
+        //driver.navigate().to("http://the-internet.herokuapp.com/");
         WebElement dropdown = driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li[11]/a"));
         dropdown.click();
 
