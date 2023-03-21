@@ -11,15 +11,15 @@ import java.util.List;
 public class ExampleTests {
 
     @Test
-    public void firstTest(){
+    public void firstTest() {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/");
         driver.manage().window().maximize();
-        WebElement button=driver.findElement(By.xpath("//ul/li/a"));
+        WebElement button = driver.findElement(By.xpath("//ul/li/a"));
         button.click();
         WebElement text = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
-        Assert.assertEquals(text.getText(),"No Test");
+        Assert.assertEquals(text.getText(), "No Test");
     }
 
 
