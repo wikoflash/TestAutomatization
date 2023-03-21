@@ -5,13 +5,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.support.ui.Select;
+
 import java.util.List;
 
 public class ExampleTests {
 
     @Test
-    public void firstTest() {
+    public void firstTest(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://the-internet.herokuapp.com/");
+        driver.manage().window().maximize();
+        WebElement button=driver.findElement(By.xpath("//ul/li/a"));
+        button.click();
+        WebElement text = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
+        Assert.assertEquals(text.getText(),"No Test");
+    }
+
+
+    public void firstTest1() {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/");
