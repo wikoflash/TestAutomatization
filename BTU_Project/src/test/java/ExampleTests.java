@@ -3,6 +3,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,27 +14,12 @@ public class ExampleTests {
 
     @Test
     public void firstTest() {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
         driver.get("http://the-internet.herokuapp.com/");
-        driver.manage().window().maximize();
-        WebElement button = driver.findElement(By.xpath("//ul/li/a"));
-        button.click();
-        WebElement text = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
-        Assert.assertEquals(text.getText(), "No Test");
-    }
 
-
-    public void firstTest1() {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://the-internet.herokuapp.com/");
-        //driver.manage().window().maximize();
-        //WebElement button = driver.findElement(By.xpath("//ul/li/a"));
-        //button.click();
-        //WebElement text = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
-
-        //driver.navigate().to("http://the-internet.herokuapp.com/");
         WebElement dropdown = driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li[11]/a"));
         dropdown.click();
 
