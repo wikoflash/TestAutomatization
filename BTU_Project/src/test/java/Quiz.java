@@ -19,7 +19,7 @@ public class Quiz {
         driver = new ChromeDriver(options);
     }
     @Test
-    public void QuizSteps() {
+    public void QuizSteps() throws InterruptedException {
         driver.get("https://demoqa.com/login");
         driver.manage().window().maximize();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -38,11 +38,8 @@ public class Quiz {
         WebElement bookStore = driver.findElement(By.id("gotoStore"));
         bookStore.click();
         js.executeScript("window.scrollBy(0,350)", "");
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
+        Thread.sleep(500);
         List<WebElement> books = driver.findElements(By.className("action-buttons"));
         var bookNum = books.size();
         Assert.assertEquals(bookNum, 8);
@@ -57,37 +54,23 @@ public class Quiz {
         //WebElement addCollection = driver.findElement(By.xpath("//*text()='Add To Your Collection'"));
         //List<WebElement> buttons = driver.findElements(By.xpath("//*[contains(text()='Add To Your Collection')]"));
         WebElement button1 = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[9]/div[2]/button"));
-
         button1.click();
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        Thread.sleep(500);
         Alert alert = driver.switchTo().alert();
         String alertMessage = driver.switchTo().alert().getText();
         Assert.assertEquals(alertMessage, "Book already present in the your collection!");
         alert.accept();
-        //driver.switchTo().alert().dismiss();
-
 
         //Step:Back To Book Store
         WebElement button2 = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[9]/div[1]/button"));
         button2.click();
         js.executeScript("window.scrollBy(0,350)", "");
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Thread.sleep(500);
         Assert.assertEquals(books.size(), 8);
 
         //Step:Log out
         WebElement logout = driver.findElement(By.id("submit"));
         logout.click();
-
         WebElement h2 = driver.findElement(By.xpath("//*[@id=\"userForm\"]/div[1]/h2"));
         Assert.assertEquals(h2.getText(), "Welcome,");
         WebElement h5 = driver.findElement(By.xpath("//*[@id=\"userForm\"]/div[1]/h5"));
